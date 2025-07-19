@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
 import Timer from './components/Timer'
 import History from './components/History'
+import Data from './components/Data'
 import Settings from './components/Settings'
 import { sessionDB } from './db/database'
+import { soundManager } from './utils/sounds'
 import './App.css'
 
 function App() {
@@ -35,6 +37,16 @@ function App() {
         if (settings.defaultDuration) {
           setHours(settings.defaultDuration.hours)
           setMinutes(settings.defaultDuration.minutes)
+        }
+        // Load sound settings
+        if (typeof settings.soundEnabled === 'boolean') {
+          soundManager.setEnabled(settings.soundEnabled)
+        }
+        if (typeof settings.volume === 'number') {
+          soundManager.setVolume(settings.volume / 100)
+        }
+        if (settings.soundType) {
+          soundManager.setSoundType(settings.soundType)
         }
       }
     } catch (error) {
@@ -101,6 +113,7 @@ function App() {
           />
         )}
         {currentView === 'history' && <History />}
+        {currentView === 'data' && <Data />}
       </main>
 
       <Settings 
@@ -120,6 +133,12 @@ function App() {
           onClick={() => setCurrentView('history')}
         >
           History
+        </button>
+        <button 
+          className={currentView === 'data' ? 'active' : ''}
+          onClick={() => setCurrentView('data')}
+        >
+          Data
         </button>
       </nav>
     </div>

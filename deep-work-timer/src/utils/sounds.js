@@ -6,6 +6,8 @@ export class SoundManager {
     this.isEnabled = true
     this.currentAlarm = null
     this.alarmInterval = null
+    this.volume = 0.5 // Default volume (0.0 to 1.0)
+    this.soundType = 'chime' // Default sound type
   }
 
   async initAudio() {
@@ -26,7 +28,27 @@ export class SoundManager {
     }
   }
 
-  // Generate a single chime sound (public method for testing)
+  // Generate sound based on current sound type (public method for testing)
+  async playSound() {
+    if (!this.isEnabled || !this.isAudioEnabled()) return
+    
+    switch (this.soundType) {
+      case 'chime':
+        return this.playChime()
+      case 'beep':
+        return this.playBeep()
+      case 'bell':
+        return this.playBell()
+      case 'ping':
+        return this.playPing()
+      case 'alert':
+        return this.playAlert()
+      default:
+        return this.playChime()
+    }
+  }
+
+  // Generate a single chime sound
   async playChime() {
     if (!this.isEnabled || !this.isAudioEnabled()) return
     
@@ -51,8 +73,8 @@ export class SoundManager {
           oscillator.frequency.setValueAtTime(freq, this.audioContext.currentTime)
           oscillator.type = 'sine'
           
-          // Set volume (lower for each additional tone)
-          const volume = 0.08 / (index + 1)
+          // Set volume (lower for each additional tone, adjusted by user volume)
+          const volume = (this.volume * 0.3) / (index + 1)
           gainNode.gain.setValueAtTime(volume, this.audioContext.currentTime)
           
           // Fade out
@@ -94,17 +116,17 @@ export class SoundManager {
       // Stop any existing alarm
       this.stopAlarm()
       
-      // Play initial chime
-      await this.playChime()
+      // Play initial sound
+      await this.playSound()
       
       // Set up repeating alarm every 3 seconds
       this.alarmInterval = setInterval(() => {
         if (this.isEnabled && this.audioContext) {
-          this.playChime()
+          this.playSound()
         } else {
           this.stopAlarm()
         }
-      }, 3000)
+      }, 1000)
       
     } catch (error) {
       console.error('Failed to play completion sound:', error)
@@ -123,8 +145,178 @@ export class SoundManager {
     this.isEnabled = enabled
   }
 
+  setVolume(volume) {
+    this.volume = Math.max(0, Math.min(1, volume)) // Clamp between 0 and 1
+  }
+
+  setSoundType(soundType) {
+    this.soundType = soundType
+  }
+
   isAudioEnabled() {
     return this.isEnabled && 'AudioContext' in window
+  }
+
+  // Alert beep sound - higher frequency rapid beeps
+  async playBeep() {
+    if (!this.isEnabled || !this.isAudioEnabled()) return
+    
+    await this.initAudio()
+    if (!this.audioContext) return
+
+    try {
+      const beepDuration = 0.1
+      const frequency = 800 // Higher frequency for alert
+      
+      for (let i = 0; i < 3; i++) {
+        const oscillator = this.audioContext.createOscillator()
+        const gainNode = this.audioContext.createGain()
+        
+        oscillator.connect(gainNode)
+        gainNode.connect(this.audioContext.destination)
+        
+        oscillator.frequency.setValueAtTime(frequency, this.audioContext.currentTime)
+        oscillator.type = 'square'
+        
+        const volume = this.volume * 0.2
+        gainNode.gain.setValueAtTime(volume, this.audioContext.currentTime + i * 0.15)
+        gainNode.gain.exponentialRampToValueAtTime(
+          0.001, 
+          this.audioContext.currentTime + i * 0.15 + beepDuration
+        )
+        
+        oscillator.start(this.audioContext.currentTime + i * 0.15)
+        oscillator.stop(this.audioContext.currentTime + i * 0.15 + beepDuration)
+        
+        oscillator.addEventListener('ended', () => {
+          oscillator.disconnect()
+          gainNode.disconnect()
+        })
+      }
+    } catch (error) {
+      console.error('Failed to play beep:', error)
+    }
+  }
+
+  // Bell ring sound - harmonic bell simulation
+  async playBell() {
+    if (!this.isEnabled || !this.isAudioEnabled()) return
+    
+    await this.initAudio()
+    if (!this.audioContext) return
+
+    try {
+      const duration = 1.2
+      const fundamental = 440 // A4
+      const harmonics = [1, 2, 3, 4.2, 5.4] // Bell-like harmonic series
+      
+      harmonics.forEach((harmonic, index) => {
+        const oscillator = this.audioContext.createOscillator()
+        const gainNode = this.audioContext.createGain()
+        
+        oscillator.connect(gainNode)
+        gainNode.connect(this.audioContext.destination)
+        
+        oscillator.frequency.setValueAtTime(fundamental * harmonic, this.audioContext.currentTime)
+        oscillator.type = 'sine'
+        
+        const volume = (this.volume * 0.15) / (index + 1)
+        gainNode.gain.setValueAtTime(volume, this.audioContext.currentTime)
+        gainNode.gain.exponentialRampToValueAtTime(
+          0.001, 
+          this.audioContext.currentTime + duration
+        )
+        
+        oscillator.start(this.audioContext.currentTime)
+        oscillator.stop(this.audioContext.currentTime + duration)
+        
+        oscillator.addEventListener('ended', () => {
+          oscillator.disconnect()
+          gainNode.disconnect()
+        })
+      })
+    } catch (error) {
+      console.error('Failed to play bell:', error)
+    }
+  }
+
+  // Soft ping sound - single tone with fade
+  async playPing() {
+    if (!this.isEnabled || !this.isAudioEnabled()) return
+    
+    await this.initAudio()
+    if (!this.audioContext) return
+
+    try {
+      const duration = 0.8
+      const oscillator = this.audioContext.createOscillator()
+      const gainNode = this.audioContext.createGain()
+      
+      oscillator.connect(gainNode)
+      gainNode.connect(this.audioContext.destination)
+      
+      oscillator.frequency.setValueAtTime(880, this.audioContext.currentTime) // A5
+      oscillator.type = 'sine'
+      
+      const volume = this.volume * 0.3
+      gainNode.gain.setValueAtTime(0, this.audioContext.currentTime)
+      gainNode.gain.linearRampToValueAtTime(volume, this.audioContext.currentTime + 0.05)
+      gainNode.gain.exponentialRampToValueAtTime(
+        0.001, 
+        this.audioContext.currentTime + duration
+      )
+      
+      oscillator.start(this.audioContext.currentTime)
+      oscillator.stop(this.audioContext.currentTime + duration)
+      
+      oscillator.addEventListener('ended', () => {
+        oscillator.disconnect()
+        gainNode.disconnect()
+      })
+    } catch (error) {
+      console.error('Failed to play ping:', error)
+    }
+  }
+
+  // Attention tone - attention-grabbing but gentle
+  async playAlert() {
+    if (!this.isEnabled || !this.isAudioEnabled()) return
+    
+    await this.initAudio()
+    if (!this.audioContext) return
+
+    try {
+      const duration = 0.4
+      const frequencies = [523.25, 698.46] // C5 to F5 interval
+      
+      frequencies.forEach((freq, index) => {
+        const oscillator = this.audioContext.createOscillator()
+        const gainNode = this.audioContext.createGain()
+        
+        oscillator.connect(gainNode)
+        gainNode.connect(this.audioContext.destination)
+        
+        oscillator.frequency.setValueAtTime(freq, this.audioContext.currentTime)
+        oscillator.type = 'triangle'
+        
+        const volume = this.volume * 0.25
+        gainNode.gain.setValueAtTime(volume, this.audioContext.currentTime + index * 0.2)
+        gainNode.gain.exponentialRampToValueAtTime(
+          0.001, 
+          this.audioContext.currentTime + index * 0.2 + duration
+        )
+        
+        oscillator.start(this.audioContext.currentTime + index * 0.2)
+        oscillator.stop(this.audioContext.currentTime + index * 0.2 + duration)
+        
+        oscillator.addEventListener('ended', () => {
+          oscillator.disconnect()
+          gainNode.disconnect()
+        })
+      })
+    } catch (error) {
+      console.error('Failed to play alert:', error)
+    }
   }
 }
 

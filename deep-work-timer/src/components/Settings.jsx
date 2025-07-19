@@ -5,6 +5,8 @@ function Settings({ isVisible, onClose }) {
   const [soundEnabled, setSoundEnabled] = useState(true)
   const [notificationsEnabled, setNotificationsEnabled] = useState(false)
   const [defaultDuration, setDefaultDuration] = useState({ hours: 0, minutes: 25 })
+  const [volume, setVolume] = useState(50)
+  const [soundType, setSoundType] = useState('chime')
 
   useEffect(() => {
     // Load settings from localStorage
@@ -15,6 +17,8 @@ function Settings({ isVisible, onClose }) {
         setSoundEnabled(settings.soundEnabled ?? true)
         setNotificationsEnabled(settings.notificationsEnabled ?? false)
         setDefaultDuration(settings.defaultDuration ?? { hours: 0, minutes: 25 })
+        setVolume(settings.volume ?? 50)
+        setSoundType(settings.soundType ?? 'chime')
       } catch (error) {
         console.error('Failed to load settings:', error)
       }
@@ -30,11 +34,15 @@ function Settings({ isVisible, onClose }) {
     const settings = {
       soundEnabled,
       notificationsEnabled,
-      defaultDuration
+      defaultDuration,
+      volume,
+      soundType
     }
     
     localStorage.setItem('deepwork-settings', JSON.stringify(settings))
     soundManager.setEnabled(soundEnabled)
+    soundManager.setVolume(volume / 100) // Convert percentage to 0-1 range
+    soundManager.setSoundType(soundType)
     onClose()
   }
 
@@ -50,8 +58,11 @@ function Settings({ isVisible, onClose }) {
   }
 
   const testSound = () => {
-    // For testing, just play a single chime, not the persistent alarm
-    soundManager.playChime()
+    // Update sound manager with current settings before testing
+    soundManager.setVolume(volume / 100)
+    soundManager.setSoundType(soundType)
+    // For testing, just play a single sound, not the persistent alarm
+    soundManager.playSound()
   }
 
   if (!isVisible) return null
@@ -94,16 +105,53 @@ function Settings({ isVisible, onClose }) {
               <span className="checkmark"></span>
               Sound alerts when timer completes
             </label>
-            <div className="setting-actions">
-              <button 
-                className="test-sound-button"
-                onClick={testSound}
-                disabled={!soundEnabled}
-              >
-                Test Sound
-              </button>
-            </div>
           </div>
+          
+          {soundEnabled && (
+            <>
+              <div className="setting-item">
+                <label className="setting-label">Sound Type</label>
+                <select 
+                  value={soundType} 
+                  onChange={(e) => setSoundType(e.target.value)}
+                  className="sound-type-select"
+                >
+                  <option value="chime">Gentle Chime</option>
+                  <option value="beep">Alert Beep</option>
+                  <option value="bell">Bell Ring</option>
+                  <option value="ping">Soft Ping</option>
+                  <option value="alert">Attention Tone</option>
+                </select>
+              </div>
+              
+              <div className="setting-item">
+                <label className="setting-label">Volume: {volume}%</label>
+                <div className="volume-control">
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={volume}
+                    onChange={(e) => setVolume(parseInt(e.target.value))}
+                    className="volume-slider"
+                  />
+                  <div className="volume-labels">
+                    <span>0%</span>
+                    <span>100%</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="setting-actions">
+                <button 
+                  className="test-sound-button"
+                  onClick={testSound}
+                >
+                  Test Sound
+                </button>
+              </div>
+            </>
+          )}
         </div>
 
         <div className="settings-section">
