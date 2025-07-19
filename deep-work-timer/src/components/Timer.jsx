@@ -3,6 +3,7 @@ import { sessionDB } from '../db/database'
 import { requestNotificationPermission, showPersistentTimerNotification } from '../utils/notifications'
 import { soundManager } from '../utils/sounds'
 import { saveTimerState, loadTimerState, clearTimerState, createTimerState } from '../utils/timerPersistence'
+import { getRandomQuote } from '../utils/quotes'
 
 function Timer({
   hours, setHours,
@@ -17,6 +18,7 @@ function Timer({
   const [rating, setRating] = useState(3)
   const [notes, setNotes] = useState('')
   const [isSaving, setIsSaving] = useState(false)
+  const [currentQuote, setCurrentQuote] = useState(getRandomQuote())
   const originalDurationRef = useRef(null)
   const originalHoursRef = useRef(null)
   const originalMinutesRef = useRef(null)
@@ -323,6 +325,18 @@ function Timer({
               </div>
             </div>
           </div>
+          
+          <div className="quote-container">
+            <div className="quote-text">"{currentQuote.text}"</div>
+            <button 
+              className="new-quote-button"
+              onClick={() => setCurrentQuote(getRandomQuote())}
+              title="Get new quote"
+            >
+              💫
+            </button>
+          </div>
+          
           <button 
             className="start-button"
             onClick={startTimer} 
