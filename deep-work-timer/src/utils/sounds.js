@@ -32,35 +32,57 @@ export class SoundManager {
   // Enable audio after user interaction (required for iOS)
   async enableUserInteraction() {
     if (!this.userInteracted) {
+      console.log('Enabling user interaction for iOS...')
       this.userInteracted = true
       await this.initAudio()
       
+      console.log('AudioContext state:', this.audioContext?.state)
+      
       // Play a silent sound to unlock audio on iOS
-      if (this.audioContext && this.audioContext.state === 'suspended') {
-        const oscillator = this.audioContext.createOscillator()
-        const gainNode = this.audioContext.createGain()
-        
-        gainNode.gain.value = 0 // Silent
-        oscillator.connect(gainNode)
-        gainNode.connect(this.audioContext.destination)
-        
-        oscillator.start()
-        oscillator.stop(this.audioContext.currentTime + 0.01)
-        
-        await this.audioContext.resume()
+      if (this.audioContext) {
+        try {
+          // Force resume for iOS
+          if (this.audioContext.state === 'suspended') {
+            console.log('Resuming suspended AudioContext...')
+            await this.audioContext.resume()
+          }
+          
+          // Create and play silent audio to unlock iOS audio
+          const oscillator = this.audioContext.createOscillator()
+          const gainNode = this.audioContext.createGain()
+          
+          gainNode.gain.value = 0 // Silent
+          oscillator.connect(gainNode)
+          gainNode.connect(this.audioContext.destination)
+          
+          oscillator.frequency.setValueAtTime(440, this.audioContext.currentTime)
+          oscillator.start(this.audioContext.currentTime)
+          oscillator.stop(this.audioContext.currentTime + 0.1)
+          
+          console.log('Silent unlock sound played, AudioContext state:', this.audioContext.state)
+        } catch (error) {
+          console.error('Error unlocking audio:', error)
+        }
       }
     }
   }
 
   // Generate sound based on current sound type (public method for testing)
   async playSound() {
-    if (!this.isEnabled || !this.isAudioEnabled()) return
+    console.log('playSound called - enabled:', this.isEnabled, 'audioEnabled:', this.isAudioEnabled(), 'userInteracted:', this.userInteracted)
+    
+    if (!this.isEnabled || !this.isAudioEnabled()) {
+      console.warn('Audio disabled or not available')
+      return
+    }
     
     // Ensure user interaction has occurred for iOS
     if (!this.userInteracted) {
       console.warn('Audio not available - user interaction required on iOS')
       return
     }
+    
+    console.log('Playing sound type:', this.soundType, 'volume:', this.volume)
     
     switch (this.soundType) {
       case 'chime':
