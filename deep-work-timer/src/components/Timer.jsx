@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { sessionDB } from '../db/database'
 import { requestNotificationPermission, showPersistentTimerNotification } from '../utils/notifications'
 import { soundManager } from '../utils/sounds'
+import { saveTimerState, loadTimerState, clearTimerState, createTimerState } from '../utils/timerPersistence'
 
 function Timer({
   hours, setHours,
@@ -16,10 +17,48 @@ function Timer({
   const [rating, setRating] = useState(3)
   const [notes, setNotes] = useState('')
   const [isSaving, setIsSaving] = useState(false)
+  const originalDurationRef = useRef(null)
+  const originalHoursRef = useRef(null)
+  const originalMinutesRef = useRef(null)
 
   // Request notification permission on component mount
   useEffect(() => {
     requestNotificationPermission()
+  }, [])
+
+  // Restore timer state on page load
+  useEffect(() => {
+    const savedState = loadTimerState()
+    if (savedState) {
+      // First set the timer values
+      setHours(savedState.hours)
+      setMinutes(savedState.minutes)
+      setTimeLeft(savedState.timeLeft)
+      
+      // Then set the running state to prevent recalculation with wrong values
+      setIsRunning(savedState.isRunning)
+      setIsPaused(savedState.isPaused)
+      
+      if (savedState.startTime) {
+        startTimeRef.current = savedState.startTime
+      }
+      if (savedState.pausedTime) {
+        pausedTimeRef.current = savedState.pausedTime
+      }
+      
+      // Store original values for timer calculations
+      originalDurationRef.current = savedState.originalDuration || (savedState.hours * 60 + savedState.minutes) * 60
+      originalHoursRef.current = savedState.hours
+      originalMinutesRef.current = savedState.minutes
+      
+      // If timer completed while page was closed
+      if (savedState.shouldShowCompletion) {
+        setShowSessionComplete(true)
+        soundManager.playCompletionSound()
+        showPersistentTimerNotification(savedState.hours * 60 + savedState.minutes)
+        clearTimerState() // Clear the saved state since timer is complete
+      }
+    }
   }, [])
 
   // Stop alarm when modal becomes visible (user can see it's complete)
@@ -45,6 +84,18 @@ function Timer({
       startTimeRef.current = Date.now()
       pausedTimeRef.current = 0
       
+      // Store original values for calculations
+      originalDurationRef.current = totalSeconds
+      originalHoursRef.current = hours
+      originalMinutesRef.current = minutes
+      
+      // Save timer state
+      const timerState = createTimerState(
+        hours, minutes, true, false, totalSeconds, 
+        startTimeRef.current, pausedTimeRef.current, originalDurationRef.current
+      )
+      saveTimerState(timerState)
+      
       // Initialize audio context on user interaction (required for iOS)
       if (soundManager.isAudioEnabled()) {
         soundManager.enableUserInteraction()
@@ -57,11 +108,25 @@ function Timer({
     if (startTimeRef.current) {
       pausedTimeRef.current += Date.now() - startTimeRef.current
     }
+    
+    // Save paused state
+    const timerState = createTimerState(
+      hours, minutes, true, true, timeLeft, 
+      startTimeRef.current, pausedTimeRef.current, originalDurationRef.current
+    )
+    saveTimerState(timerState)
   }
 
   const resumeTimer = () => {
     setIsPaused(false)
     startTimeRef.current = Date.now()
+    
+    // Save resumed state
+    const timerState = createTimerState(
+      hours, minutes, true, false, timeLeft, 
+      startTimeRef.current, pausedTimeRef.current, originalDurationRef.current
+    )
+    saveTimerState(timerState)
   }
 
   const resetTimer = () => {
@@ -75,6 +140,12 @@ function Timer({
     }
     startTimeRef.current = null
     pausedTimeRef.current = 0
+    originalDurationRef.current = null
+    originalHoursRef.current = null
+    originalMinutesRef.current = null
+    
+    // Clear saved timer state
+    clearTimerState()
   }
 
   useEffect(() => {
@@ -82,10 +153,19 @@ function Timer({
       intervalRef.current = setInterval(() => {
         const now = Date.now()
         const elapsed = Math.floor((now - startTimeRef.current + pausedTimeRef.current) / 1000)
-        const originalDuration = (hours * 60 + minutes) * 60
+        const originalDuration = originalDurationRef.current || (hours * 60 + minutes) * 60
         const remaining = Math.max(0, originalDuration - elapsed)
         
         setTimeLeft(remaining)
+        
+        // Periodically save timer state (every 5 seconds to avoid too frequent saves)
+        if (Math.floor(remaining) % 5 === 0) {
+          const timerState = createTimerState(
+            originalHoursRef.current || hours, originalMinutesRef.current || minutes, true, false, remaining, 
+            startTimeRef.current, pausedTimeRef.current, originalDurationRef.current
+          )
+          saveTimerState(timerState)
+        }
         
         if (remaining === 0) {
           setIsRunning(false)
@@ -104,6 +184,9 @@ function Timer({
               duration: sessionDuration
             })
           }
+          
+          // Clear saved timer state since timer is complete
+          clearTimerState()
           
           if (intervalRef.current) {
             clearInterval(intervalRef.current)
@@ -177,6 +260,9 @@ function Timer({
       setRating(3)
       setNotes('')
       setShowSessionComplete(false)
+      
+      // Clear timer state since session is saved
+      clearTimerState()
       
       // Notify parent component
       if (onSessionSaved) {
