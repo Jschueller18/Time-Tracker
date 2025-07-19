@@ -57,7 +57,10 @@ function Settings({ isVisible, onClose }) {
     }
   }
 
-  const testSound = () => {
+  const testSound = async () => {
+    // Enable user interaction for iOS
+    await soundManager.enableUserInteraction()
+    
     // Update sound manager with current settings before testing
     soundManager.setVolume(volume / 100)
     soundManager.setSoundType(soundType)

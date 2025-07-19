@@ -45,9 +45,9 @@ function Timer({
       startTimeRef.current = Date.now()
       pausedTimeRef.current = 0
       
-      // Initialize audio context on user interaction
+      // Initialize audio context on user interaction (required for iOS)
       if (soundManager.isAudioEnabled()) {
-        soundManager.initAudio()
+        soundManager.enableUserInteraction()
       }
     }
   }
