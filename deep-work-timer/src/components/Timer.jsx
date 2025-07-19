@@ -98,9 +98,9 @@ function Timer({
       )
       saveTimerState(timerState)
       
-      // Initialize audio context on user interaction (required for iOS)
+      // Initialize audio context on user interaction
       if (soundManager.isAudioEnabled()) {
-        soundManager.enableUserInteraction()
+        soundManager.initAudio()
       }
     }
   }

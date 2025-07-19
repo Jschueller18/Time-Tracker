@@ -8,16 +8,15 @@ export class SoundManager {
     this.alarmInterval = null
     this.volume = 0.5 // Default volume (0.0 to 1.0)
     this.soundType = 'chime' // Default sound type
-    this.userInteracted = false // Track if user has interacted for iOS
   }
 
   async initAudio() {
     try {
       if (!this.audioContext) {
-        this.audioContext = new (window.AudioContext || window.webkitAudioContext)()
+        this.audioContext = new AudioContext()
       }
       
-      // Resume context if suspended (required by iOS and other browsers)
+      // Resume context if suspended
       if (this.audioContext.state === 'suspended') {
         await this.audioContext.resume()
       }
@@ -29,47 +28,11 @@ export class SoundManager {
     }
   }
 
-  // Enable audio after user interaction (required for iOS)
-  async enableUserInteraction() {
-    if (!this.userInteracted) {
-      this.userInteracted = true
-      await this.initAudio()
-      
-      // Play a silent sound to unlock audio on iOS
-      if (this.audioContext) {
-        try {
-          // Force resume for iOS
-          if (this.audioContext.state === 'suspended') {
-            await this.audioContext.resume()
-          }
-          
-          // Create and play silent audio to unlock iOS audio
-          const oscillator = this.audioContext.createOscillator()
-          const gainNode = this.audioContext.createGain()
-          
-          gainNode.gain.value = 0 // Silent
-          oscillator.connect(gainNode)
-          gainNode.connect(this.audioContext.destination)
-          
-          oscillator.frequency.setValueAtTime(440, this.audioContext.currentTime)
-          oscillator.start(this.audioContext.currentTime)
-          oscillator.stop(this.audioContext.currentTime + 0.1)
-        } catch (error) {
-          console.error('Error unlocking audio:', error)
-        }
-      }
-    }
-  }
 
   // Generate sound based on current sound type (public method for testing)
   async playSound() {
     if (!this.isEnabled || !this.isAudioEnabled()) return
     
-    // Ensure user interaction has occurred for iOS
-    if (!this.userInteracted) {
-      console.warn('Audio not available - user interaction required on iOS')
-      return
-    }
     
     switch (this.soundType) {
       case 'chime':
