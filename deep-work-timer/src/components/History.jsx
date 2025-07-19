@@ -7,6 +7,7 @@ function History() {
   const [editRating, setEditRating] = useState(3)
   const [editNotes, setEditNotes] = useState('')
   const [isSaving, setIsSaving] = useState(false)
+  const [deleteConfirm, setDeleteConfirm] = useState({ show: false, sessionId: null, sessionInfo: null })
 
   useEffect(() => {
     // Load sessions from IndexedDB
@@ -50,9 +51,26 @@ function History() {
     }
   }
 
-  const deleteSession = async (sessionId) => {
+  const showDeleteConfirm = (session) => {
+    setDeleteConfirm({ 
+      show: true, 
+      sessionId: session.id,
+      sessionInfo: {
+        date: new Date(session.startTime).toLocaleDateString(),
+        duration: formatDuration(session.duration),
+        rating: getRatingEmoji(session.rating)
+      }
+    })
+  }
+
+  const cancelDelete = () => {
+    setDeleteConfirm({ show: false, sessionId: null, sessionInfo: null })
+  }
+
+  const confirmDelete = async () => {
     try {
-      await sessionDB.deleteSession(sessionId)
+      await sessionDB.deleteSession(deleteConfirm.sessionId)
+      setDeleteConfirm({ show: false, sessionId: null, sessionInfo: null })
       // Reload sessions after deletion
       loadSessions()
     } catch (error) {
@@ -164,7 +182,7 @@ function History() {
                     </button>
                     <button 
                       className="delete-btn"
-                      onClick={() => deleteSession(session.id)}
+                      onClick={() => showDeleteConfirm(session)}
                     >
                       Delete
                     </button>
@@ -173,6 +191,44 @@ function History() {
               </div>
             </div>
           ))}
+        </div>
+      )}
+      
+      {deleteConfirm.show && (
+        <div className="delete-confirm-modal">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h3>Delete Session?</h3>
+            </div>
+            <p>Are you sure you want to delete this session?</p>
+            
+            <div className="session-preview">
+              <div className="preview-item">
+                <strong>Date:</strong> {deleteConfirm.sessionInfo.date}
+              </div>
+              <div className="preview-item">
+                <strong>Duration:</strong> {deleteConfirm.sessionInfo.duration}
+              </div>
+              <div className="preview-item">
+                <strong>Rating:</strong> {deleteConfirm.sessionInfo.rating}
+              </div>
+            </div>
+            
+            <div className="modal-actions">
+              <button 
+                className="cancel-delete-button"
+                onClick={cancelDelete}
+              >
+                Cancel
+              </button>
+              <button 
+                className="confirm-delete-button"
+                onClick={confirmDelete}
+              >
+                Delete Session
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>
