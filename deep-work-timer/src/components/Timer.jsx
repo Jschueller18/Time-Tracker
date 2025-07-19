@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { sessionDB } from '../db/database'
-import { requestNotificationPermission, showTimerCompleteNotification } from '../utils/notifications'
+import { requestNotificationPermission, showPersistentTimerNotification } from '../utils/notifications'
 import { soundManager } from '../utils/sounds'
 
 function Timer({
@@ -95,7 +95,15 @@ function Timer({
           // Play sound and show notification
           const sessionDuration = hours * 60 + minutes
           soundManager.playCompletionSound()
-          showTimerCompleteNotification(sessionDuration)
+          showPersistentTimerNotification(sessionDuration)
+          
+          // Send message to service worker for background notification
+          if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+            navigator.serviceWorker.controller.postMessage({
+              type: 'TIMER_COMPLETE',
+              duration: sessionDuration
+            })
+          }
           
           if (intervalRef.current) {
             clearInterval(intervalRef.current)

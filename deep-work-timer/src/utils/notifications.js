@@ -39,7 +39,10 @@ export const showTimerCompleteNotification = (duration) => {
       badge: '/pwa-192x192.png',
       tag: 'timer-complete',
       requireInteraction: true,
-      silent: false
+      silent: false,
+      // These options help bypass ringer settings on some devices
+      renotify: true,
+      vibrate: [200, 100, 200, 100, 200]
     })
 
     // Focus the window when notification is clicked
@@ -48,14 +51,59 @@ export const showTimerCompleteNotification = (duration) => {
       notification.close()
     }
 
-    // Auto-close after 10 seconds if user doesn't interact
-    setTimeout(() => {
-      notification.close()
-    }, 10000)
-
+    // Don't auto-close - let it persist until user interacts
+    // This helps ensure the user sees it even if they're away from the device
+    
     return notification
   } catch (error) {
     console.error('Failed to show notification:', error)
     return null
   }
+}
+
+// Enhanced notification for persistent alerts
+export const showPersistentTimerNotification = async (duration) => {
+  // First try the regular notification
+  const notification = showTimerCompleteNotification(duration)
+  
+  // If service worker is available, also send a persistent notification
+  if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+    try {
+      const registration = await navigator.serviceWorker.ready
+      
+      const hours = Math.floor(duration / 60)
+      const minutes = duration % 60
+      const timeText = hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`
+      
+      // Service worker notifications can persist even when app is closed
+      await registration.showNotification('Deep Work Timer Complete! 🎉', {
+        body: `Your ${timeText} deep work session has finished. Time to take a break!`,
+        icon: '/pwa-192x192.png',
+        badge: '/pwa-192x192.png',
+        tag: 'timer-complete-sw',
+        requireInteraction: true,
+        silent: false,
+        renotify: true,
+        vibrate: [200, 100, 200, 100, 200],
+        actions: [
+          {
+            action: 'open',
+            title: 'Open Timer'
+          },
+          {
+            action: 'dismiss',
+            title: 'Dismiss'
+          }
+        ],
+        data: {
+          duration: duration,
+          timestamp: Date.now()
+        }
+      })
+    } catch (error) {
+      console.error('Failed to show service worker notification:', error)
+    }
+  }
+  
+  return notification
 }
