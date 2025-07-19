@@ -63,9 +63,23 @@ function App() {
     }
   }
 
-  const handleSessionSaved = () => {
+  const handleSessionSaved = async () => {
     // Reload today's total when a session is saved
     loadTodayTotal()
+    
+    // Increment session counter for auto-backup
+    sessionDB.incrementSessionCounter()
+    
+    // Check if auto-backup should be triggered
+    const { monthlyBackupDue, sessionBackupDue } = sessionDB.shouldTriggerAutoBackup()
+    
+    if (monthlyBackupDue || sessionBackupDue) {
+      console.log('Triggering auto-backup...', { monthlyBackupDue, sessionBackupDue })
+      const success = await sessionDB.triggerAutoBackup()
+      if (success) {
+        console.log('Auto-backup completed successfully')
+      }
+    }
   }
 
   const formatTime = (minutes) => {

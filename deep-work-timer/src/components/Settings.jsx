@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { soundManager } from '../utils/sounds'
+import { sessionDB } from '../db/database'
 
 function Settings({ isVisible, onClose }) {
   const [soundEnabled, setSoundEnabled] = useState(true)
@@ -7,6 +8,8 @@ function Settings({ isVisible, onClose }) {
   const [defaultDuration, setDefaultDuration] = useState({ hours: 0, minutes: 25 })
   const [volume, setVolume] = useState(50)
   const [soundType, setSoundType] = useState('chime')
+  const [backupStatus, setBackupStatus] = useState('')
+  const fileInputRef = useRef(null)
 
   useEffect(() => {
     // Load settings from localStorage
@@ -66,6 +69,54 @@ function Settings({ isVisible, onClose }) {
     soundManager.setSoundType(soundType)
     // For testing, just play a single sound, not the persistent alarm
     soundManager.playSound()
+  }
+
+  const handleExportData = async () => {
+    try {
+      setBackupStatus('Exporting data...')
+      const filename = await sessionDB.downloadBackup()
+      setBackupStatus(`✓ Data exported successfully: ${filename}`)
+      setTimeout(() => setBackupStatus(''), 3000)
+    } catch (error) {
+      setBackupStatus(`✗ Export failed: ${error.message}`)
+      setTimeout(() => setBackupStatus(''), 5000)
+    }
+  }
+
+  const handleImportData = async (event) => {
+    const file = event.target.files[0]
+    if (!file) return
+
+    const confirmRestore = window.confirm(
+      'This will replace all your current data (sessions and settings) with the backup data. Are you sure you want to continue?'
+    )
+    
+    if (!confirmRestore) {
+      // Reset file input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ''
+      }
+      return
+    }
+
+    try {
+      setBackupStatus('Importing data...')
+      const result = await sessionDB.importData(file)
+      setBackupStatus(`✓ Data imported successfully: ${result.sessionsImported} sessions restored`)
+      
+      // Reload the page to reflect imported settings
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000)
+    } catch (error) {
+      setBackupStatus(`✗ Import failed: ${error.message}`)
+      setTimeout(() => setBackupStatus(''), 5000)
+    }
+
+    // Reset file input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
   }
 
   if (!isVisible) return null
@@ -190,6 +241,45 @@ function Settings({ isVisible, onClose }) {
                 </select>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="settings-section">
+          <h4>Data Backup</h4>
+          <div className="setting-item">
+            <p className="setting-description">
+              Export your sessions and settings to a backup file, or restore from a previous backup.
+            </p>
+            <div className="backup-controls">
+              <button 
+                className="backup-button export-button"
+                onClick={handleExportData}
+              >
+                📁 Export My Data
+              </button>
+              
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".json"
+                onChange={handleImportData}
+                style={{ display: 'none' }}
+              />
+              <button 
+                className="backup-button import-button"
+                onClick={() => fileInputRef.current?.click()}
+              >
+                📂 Import Backup
+              </button>
+            </div>
+            {backupStatus && (
+              <div className={`backup-status ${backupStatus.includes('✓') ? 'success' : 'error'}`}>
+                {backupStatus}
+              </div>
+            )}
+            <p className="setting-description">
+              Auto-backup: Data is automatically backed up every 50 completed sessions or once per month.
+            </p>
           </div>
         </div>
 
