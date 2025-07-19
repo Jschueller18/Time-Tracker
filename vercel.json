@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd deep-work-timer && npm run build",
+  "outputDirectory": "deep-work-timer/dist",
+  "installCommand": "cd deep-work-timer && npm install",
+  "devCommand": "cd deep-work-timer && npm run dev"
+}
