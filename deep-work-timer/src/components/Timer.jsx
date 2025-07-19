@@ -189,11 +189,7 @@ function Timer({
     }
   }
 
-  const skipSession = () => {
-    // Stop the alarm when user skips
-    soundManager.stopAlarm()
-    setShowSessionComplete(false)
-  }
+
 
   const stopAlarmOnly = () => {
     // Just stop the alarm without closing modal
@@ -263,9 +259,11 @@ function Timer({
             {!isPaused ? (
               <button className="pause-button" onClick={pauseTimer}>Pause</button>
             ) : (
-              <button className="resume-button" onClick={resumeTimer}>Resume</button>
+              <>
+                <button className="resume-button" onClick={resumeTimer}>Resume</button>
+                <button className="stop-button" onClick={resetTimer}>Stop</button>
+              </>
             )}
-            <button className="stop-button" onClick={resetTimer}>Stop</button>
           </div>
         </div>
       )}
@@ -322,13 +320,6 @@ function Timer({
                 disabled={isSaving}
               >
                 {isSaving ? 'Saving...' : 'Save Session'}
-              </button>
-              <button 
-                className="skip-button"
-                onClick={skipSession}
-                disabled={isSaving}
-              >
-                Skip
               </button>
             </div>
           </div>
