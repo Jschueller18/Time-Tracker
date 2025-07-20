@@ -73,7 +73,7 @@
 }
 
 .app-nav button.active {
-  background: #007bff;
+  background: #0ac8f2;
   color: white;
 }
 
@@ -82,7 +82,7 @@
 }
 
 .app-nav button.active:hover {
-  background: #0056b3;
+  background: #08a3c9;
 }
 
 .timer-container {
@@ -170,7 +170,7 @@
 }
 
 .wheel-item.selected {
-  background: #007bff;
+  background: #0ac8f2;
   color: white;
   font-weight: 600;
   transform: scale(1.05);
@@ -207,14 +207,14 @@
 }
 
 .start-button {
-  background: #007bff;
+  background: #0ac8f2;
   color: white;
   min-width: 200px;
   margin-top: 1rem;
 }
 
 .start-button:hover:not(:disabled) {
-  background: #0056b3;
+  background: #08a3c9;
 }
 
 .start-button:disabled {
@@ -253,12 +253,12 @@
 }
 
 .pause-button, .resume-button {
-  background: #28a745;
+  background: #0ac8f2;
   color: white;
 }
 
 .pause-button:hover, .resume-button:hover {
-  background: #218838;
+  background: #08a3c9;
 }
 
 .stop-button {
@@ -334,7 +334,7 @@
 }
 
 .close-modal-button {
-  background: #007bff;
+  background: #0ac8f2;
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -345,7 +345,7 @@
 }
 
 .close-modal-button:hover {
-  background: #0056b3;
+  background: #08a3c9;
 }
 
 /* Enhanced Session Modal Styles */
@@ -384,13 +384,13 @@
 }
 
 .rating-button:hover {
-  border-color: #007bff;
-  background: #f8f9ff;
+  border-color: #0ac8f2;
+  background: #f0f8ff;
 }
 
 .rating-button.selected {
-  border-color: #007bff;
-  background: #007bff;
+  border-color: #0ac8f2;
+  background: #0ac8f2;
   color: white;
 }
 
@@ -429,7 +429,7 @@
 
 .session-notes:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: #0ac8f2;
 }
 
 .session-notes:disabled {
@@ -565,7 +565,7 @@
 }
 
 .edit-btn {
-  background: #007bff;
+  background: #0ac8f2;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -575,7 +575,7 @@
 }
 
 .edit-btn:hover {
-  background: #0056b3;
+  background: #08a3c9;
 }
 
 .save-btn {
@@ -652,7 +652,7 @@
 
 .edit-notes-input:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: #0ac8f2;
 }
 
 .edit-notes-input:disabled {
@@ -849,8 +849,8 @@
 }
 
 .setting-label input[type="checkbox"]:checked {
-  background: #007bff;
-  border-color: #007bff;
+  background: #0ac8f2;
+  border-color: #0ac8f2;
 }
 
 .setting-label input[type="checkbox"]:checked::after {
@@ -907,8 +907,8 @@
 
 .sound-type-select:focus {
   outline: none;
-  border-color: #007aff;
-  box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
+  border-color: #0ac8f2;
+  box-shadow: 0 0 0 2px rgba(10, 200, 242, 0.2);
 }
 
 .volume-control {
@@ -932,7 +932,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #007aff;
+  background: #0ac8f2;
   cursor: pointer;
   border: 2px solid white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -942,7 +942,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #007aff;
+  background: #0ac8f2;
   cursor: pointer;
   border: 2px solid white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -986,7 +986,7 @@
 
 .duration-input select:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: #0ac8f2;
 }
 
 .settings-modal .modal-actions {
@@ -997,7 +997,7 @@
 }
 
 .save-button {
-  background: #007bff;
+  background: #0ac8f2;
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -1009,7 +1009,7 @@
 }
 
 .save-button:hover {
-  background: #0056b3;
+  background: #08a3c9;
 }
 
 .cancel-button {
@@ -1114,13 +1114,13 @@
 }
 
 .time-range-btn:hover {
-  border-color: #007bff;
-  color: #007bff;
+  border-color: #0ac8f2;
+  color: #0ac8f2;
 }
 
 .time-range-btn.active {
-  background: #007bff;
-  border-color: #007bff;
+  background: #0ac8f2;
+  border-color: #0ac8f2;
   color: white;
 }
 
@@ -1182,8 +1182,8 @@
 }
 
 .nav-button:hover {
-  background: #007bff;
-  border-color: #007bff;
+  background: #0ac8f2;
+  border-color: #0ac8f2;
   color: white;
 }
 
@@ -1365,7 +1365,7 @@
 }
 
 .calendar-day.today {
-  border: 2px solid #007bff;
+  border: 2px solid #0ac8f2;
   font-weight: 700;
 }
 
@@ -1624,7 +1624,7 @@
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
-  background: #007bff;
+  background: #0ac8f2;
   border: none;
   border-radius: 50%;
   width: 32px;
@@ -1639,7 +1639,7 @@
 }
 
 .new-quote-button:hover {
-  background: #0056b3;
+  background: #08a3c9;
   transform: scale(1.05);
 }
 
@@ -1688,8 +1688,8 @@
 }
 
 .backup-button:hover {
-  border-color: #007bff;
-  color: #007bff;
+  border-color: #0ac8f2;
+  color: #0ac8f2;
   transform: translateY(-1px);
 }
 

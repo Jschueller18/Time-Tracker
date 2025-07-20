@@ -478,7 +478,7 @@ function Data() {
               <Line 
                 type="monotone" 
                 dataKey="totalHours" 
-                stroke="#2563eb" 
+                stroke="#0ac8f2" 
                 strokeWidth={2}
                 dot={{ r: 4 }}
                 activeDot={{ r: 6 }}
