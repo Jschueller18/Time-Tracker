@@ -121,22 +121,53 @@ export const sessionDB = {
             return
           }
 
-          // Clear existing data
-          await db.sessions.clear()
+          // SAFE MERGE: Get existing sessions to avoid duplicates
+          const existingSessions = await this.getAllSessions()
+          const existingIds = new Set(existingSessions.map(session => session.id))
           
-          // Import sessions
-          if (backup.sessions.length > 0) {
-            await db.sessions.bulkAdd(backup.sessions)
+          // Filter out sessions that already exist (avoid duplicates)
+          const newSessions = backup.sessions.filter(session => 
+            session.id && !existingIds.has(session.id)
+          )
+          
+          // Also check for potential duplicates based on startTime and duration
+          // in case IDs are different but sessions are the same
+          const existingSessionKeys = new Set(
+            existingSessions.map(s => `${s.startTime}_${s.duration}_${s.rating || 0}`)
+          )
+          
+          const trulyNewSessions = newSessions.filter(session => {
+            const sessionKey = `${session.startTime}_${session.duration}_${session.rating || 0}`
+            return !existingSessionKeys.has(sessionKey)
+          })
+          
+          // SAFE IMPORT: Add only new sessions (no data destruction)
+          let sessionsImported = 0
+          if (trulyNewSessions.length > 0) {
+            // Remove id field to let IndexedDB auto-generate new ones
+            const sessionsToAdd = trulyNewSessions.map(session => ({
+              startTime: session.startTime,
+              duration: session.duration,
+              rating: session.rating,
+              notes: session.notes || ''
+            }))
+            
+            await db.sessions.bulkAdd(sessionsToAdd)
+            sessionsImported = sessionsToAdd.length
           }
           
-          // Import settings
+          // Import settings (non-destructive)
           if (backup.settings && typeof backup.settings === 'object') {
-            localStorage.setItem('deepwork-settings', JSON.stringify(backup.settings))
+            const currentSettings = JSON.parse(localStorage.getItem('deepwork-settings') || '{}')
+            const mergedSettings = { ...currentSettings, ...backup.settings }
+            localStorage.setItem('deepwork-settings', JSON.stringify(mergedSettings))
           }
 
           resolve({
-            sessionsImported: backup.sessions.length,
-            settingsImported: !!backup.settings
+            sessionsImported: sessionsImported,
+            duplicatesSkipped: backup.sessions.length - sessionsImported,
+            settingsImported: !!backup.settings,
+            totalExistingKept: existingSessions.length
           })
         } catch (error) {
           reject(new Error('Failed to parse backup file: ' + error.message))
@@ -148,21 +179,21 @@ export const sessionDB = {
     })
   },
 
-  // Auto-backup functionality
+  // Auto-backup functionality - CHANGED TO DAILY
   shouldTriggerAutoBackup() {
     const backupCounters = JSON.parse(localStorage.getItem('deepwork-backup-counters') || '{}')
-    const lastMonthlyBackup = new Date(backupCounters.lastMonthlyBackup || 0)
+    const lastDailyBackup = new Date(backupCounters.lastDailyBackup || 0)
     const sessionsCompleted = backupCounters.sessionsCompleted || 0
     const now = new Date()
     
-    // Check if a month has passed since last backup
-    const monthInMs = 30 * 24 * 60 * 60 * 1000
-    const monthlyBackupDue = (now - lastMonthlyBackup) >= monthInMs
+    // Check if a day has passed since last backup (changed from monthly)
+    const dayInMs = 24 * 60 * 60 * 1000
+    const dailyBackupDue = (now - lastDailyBackup) >= dayInMs
     
-    // Check if 50 sessions have been completed since last backup
-    const sessionBackupDue = sessionsCompleted >= 50
+    // Keep session-based backup as secondary trigger (reduced from 50 to 10)
+    const sessionBackupDue = sessionsCompleted >= 10
     
-    return { monthlyBackupDue, sessionBackupDue }
+    return { dailyBackupDue, sessionBackupDue }
   },
 
   incrementSessionCounter() {
@@ -174,7 +205,7 @@ export const sessionDB = {
   resetBackupCounters() {
     const backupCounters = JSON.parse(localStorage.getItem('deepwork-backup-counters') || '{}')
     backupCounters.sessionsCompleted = 0
-    backupCounters.lastMonthlyBackup = new Date().toISOString()
+    backupCounters.lastDailyBackup = new Date().toISOString()
     localStorage.setItem('deepwork-backup-counters', JSON.stringify(backupCounters))
   },
 

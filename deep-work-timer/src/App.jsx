@@ -71,10 +71,10 @@ function App() {
     sessionDB.incrementSessionCounter()
     
     // Check if auto-backup should be triggered
-    const { monthlyBackupDue, sessionBackupDue } = sessionDB.shouldTriggerAutoBackup()
+    const { dailyBackupDue, sessionBackupDue } = sessionDB.shouldTriggerAutoBackup()
     
-    if (monthlyBackupDue || sessionBackupDue) {
-      console.log('Triggering auto-backup...', { monthlyBackupDue, sessionBackupDue })
+    if (dailyBackupDue || sessionBackupDue) {
+      console.log('Triggering auto-backup...', { dailyBackupDue, sessionBackupDue })
       const success = await sessionDB.triggerAutoBackup()
       if (success) {
         console.log('Auto-backup completed successfully')

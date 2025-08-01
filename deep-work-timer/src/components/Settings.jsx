@@ -92,11 +92,12 @@ function Settings({ isVisible, onClose }) {
     const file = event.target.files[0]
     if (!file) return
 
-    const confirmRestore = window.confirm(
-      'This will replace all your current data (sessions and settings) with the backup data. Are you sure you want to continue?'
+    // NEW: No scary confirmation needed since import is now safe!
+    const confirmImport = window.confirm(
+      'This will safely add any new sessions from your backup file to your existing data. No existing sessions will be lost or replaced. Continue?'
     )
     
-    if (!confirmRestore) {
+    if (!confirmImport) {
       // Reset file input
       if (fileInputRef.current) {
         fileInputRef.current.value = ''
@@ -105,14 +106,32 @@ function Settings({ isVisible, onClose }) {
     }
 
     try {
-      setBackupStatus('Importing data...')
+      setBackupStatus('Safely importing data...')
       const result = await sessionDB.importData(file)
-      setBackupStatus(`✓ Data imported successfully: ${result.sessionsImported} sessions restored`)
       
-      // Reload the page to reflect imported settings
-      setTimeout(() => {
-        window.location.reload()
-      }, 2000)
+      // NEW: Show detailed results about the safe import
+      let message = `✓ Import completed safely!`
+      if (result.sessionsImported > 0) {
+        message += ` Added ${result.sessionsImported} new sessions.`
+      }
+      if (result.duplicatesSkipped > 0) {
+        message += ` Skipped ${result.duplicatesSkipped} duplicates.`
+      }
+      if (result.totalExistingKept > 0) {
+        message += ` Kept all ${result.totalExistingKept} existing sessions.`
+      }
+      
+      setBackupStatus(message)
+      
+      // Only reload if settings were imported
+      if (result.settingsImported) {
+        setTimeout(() => {
+          window.location.reload()
+        }, 3000)
+      } else {
+        // Clear status after showing success
+        setTimeout(() => setBackupStatus(''), 5000)
+      }
     } catch (error) {
       setBackupStatus(`✗ Import failed: ${error.message}`)
       setTimeout(() => setBackupStatus(''), 5000)
@@ -253,7 +272,7 @@ function Settings({ isVisible, onClose }) {
           <h4>Data Backup</h4>
           <div className="setting-item">
             <p className="setting-description">
-              Export your sessions and settings to a backup file, or restore from a previous backup.
+              Export your sessions and settings to a backup file, or safely import from a previous backup. Importing adds new sessions without replacing existing data.
             </p>
             <div className="backup-controls">
               <button 
@@ -283,7 +302,7 @@ function Settings({ isVisible, onClose }) {
               </div>
             )}
             <p className="setting-description">
-              Auto-backup: Data is automatically backed up every 50 completed sessions or once per month.
+              Auto-backup: Data is automatically backed up daily and every 10 completed sessions for maximum protection.
             </p>
           </div>
         </div>
