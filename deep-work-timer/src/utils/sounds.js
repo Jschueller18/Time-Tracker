@@ -13,12 +13,15 @@ export class SoundManager {
   async initAudio() {
     try {
       if (!this.audioContext) {
-        this.audioContext = new AudioContext()
+        this.audioContext = new (window.AudioContext || window.webkitAudioContext)()
+        console.log('Audio context created, state:', this.audioContext.state)
       }
       
       // Resume context if suspended
       if (this.audioContext.state === 'suspended') {
+        console.log('Resuming suspended audio context...')
         await this.audioContext.resume()
+        console.log('Audio context resumed, state:', this.audioContext.state)
       }
       
       return true
@@ -31,8 +34,13 @@ export class SoundManager {
 
   // Generate sound based on current sound type (public method for testing)
   async playSound() {
-    if (!this.isEnabled || !this.isAudioEnabled()) return
+    console.log('playSound called - enabled:', this.isEnabled, 'audioEnabled:', this.isAudioEnabled())
+    if (!this.isEnabled || !this.isAudioEnabled()) {
+      console.log('Sound disabled or audio not available')
+      return
+    }
     
+    console.log('Playing sound type:', this.soundType, 'volume:', this.volume)
     
     switch (this.soundType) {
       case 'chime':
@@ -54,9 +62,15 @@ export class SoundManager {
   async playChime() {
     if (!this.isEnabled || !this.isAudioEnabled()) return
     
+    console.log('playChime called, initializing audio...')
     await this.initAudio()
     
-    if (!this.audioContext) return
+    if (!this.audioContext) {
+      console.error('Audio context not available after init')
+      return
+    }
+    
+    console.log('Audio context state:', this.audioContext.state)
 
     try {
       const duration = 0.6
@@ -118,12 +132,25 @@ export class SoundManager {
       // Stop any existing alarm
       this.stopAlarm()
       
+      // Force resume audio context for background tabs
+      if (this.audioContext.state === 'suspended') {
+        await this.audioContext.resume()
+      }
+      
       // Play initial sound
       await this.playSound()
       
-      // Set up repeating alarm every 3 seconds
-      this.alarmInterval = setInterval(() => {
+      // Set up repeating alarm every second for urgent attention
+      this.alarmInterval = setInterval(async () => {
         if (this.isEnabled && this.audioContext) {
+          // Ensure audio context stays active in background tabs
+          if (this.audioContext.state === 'suspended') {
+            try {
+              await this.audioContext.resume()
+            } catch (e) {
+              console.warn('Could not resume audio context:', e)
+            }
+          }
           this.playSound()
         } else {
           this.stopAlarm()
@@ -156,7 +183,28 @@ export class SoundManager {
   }
 
   isAudioEnabled() {
-    return this.isEnabled && 'AudioContext' in window
+    return this.isEnabled && ('AudioContext' in window || 'webkitAudioContext' in window)
+  }
+
+  // Test method for immediate sound feedback
+  async testSound() {
+    console.log('Testing sound with current settings...')
+    console.log('Enabled:', this.isEnabled, 'Volume:', this.volume, 'Type:', this.soundType)
+    
+    try {
+      await this.initAudio()
+      if (this.audioContext && this.audioContext.state === 'running') {
+        await this.playSound()
+        console.log('Test sound completed successfully')
+        return true
+      } else {
+        console.error('Audio context not running:', this.audioContext?.state)
+        return false
+      }
+    } catch (error) {
+      console.error('Test sound failed:', error)
+      return false
+    }
   }
 
   // Alert beep sound - higher frequency rapid beeps

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sound Test</title>
+</head>
+<body>
+    <h1>Deep Work Timer Sound Test</h1>
+    <button id="testChime">Test Chime</button>
+    <button id="testBeep">Test Beep</button>
+    <button id="testBell">Test Bell</button>
+    <button id="testPing">Test Ping</button>
+    <button id="testAlert">Test Alert</button>
+    <div id="status"></div>
+
+    <script type="module">
+        import { soundManager } from './src/utils/sounds.js';
+
+        const status = document.getElementById('status');
+
+        function log(message) {
+            console.log(message);
+            status.innerHTML += '<p>' + message + '</p>';
+        }
+
+        // Test different sound types
+        document.getElementById('testChime').onclick = async () => {
+            log('Testing chime...');
+            soundManager.setSoundType('chime');
+            soundManager.setEnabled(true);
+            soundManager.setVolume(0.5);
+            const success = await soundManager.testSound();
+            log('Chime test ' + (success ? 'passed' : 'failed'));
+        };
+
+        document.getElementById('testBeep').onclick = async () => {
+            log('Testing beep...');
+            soundManager.setSoundType('beep');
+            soundManager.setEnabled(true);
+            soundManager.setVolume(0.5);
+            const success = await soundManager.testSound();
+            log('Beep test ' + (success ? 'passed' : 'failed'));
+        };
+
+        document.getElementById('testBell').onclick = async () => {
+            log('Testing bell...');
+            soundManager.setSoundType('bell');
+            soundManager.setEnabled(true);
+            soundManager.setVolume(0.5);
+            const success = await soundManager.testSound();
+            log('Bell test ' + (success ? 'passed' : 'failed'));
+        };
+
+        document.getElementById('testPing').onclick = async () => {
+            log('Testing ping...');
+            soundManager.setSoundType('ping');
+            soundManager.setEnabled(true);
+            soundManager.setVolume(0.5);
+            const success = await soundManager.testSound();
+            log('Ping test ' + (success ? 'passed' : 'failed'));
+        };
+
+        document.getElementById('testAlert').onclick = async () => {
+            log('Testing alert...');
+            soundManager.setSoundType('alert');
+            soundManager.setEnabled(true);
+            soundManager.setVolume(0.5);
+            const success = await soundManager.testSound();
+            log('Alert test ' + (success ? 'passed' : 'failed'));
+        };
+
+        log('Sound test page loaded. Click buttons to test sounds.');
+        log('Check browser console for detailed logging.');
+    </script>
+</body>
+</html>

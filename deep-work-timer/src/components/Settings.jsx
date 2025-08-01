@@ -61,14 +61,19 @@ function Settings({ isVisible, onClose }) {
   }
 
   const testSound = async () => {
-    // Initialize audio context
-    await soundManager.initAudio()
+    console.log('Test sound button clicked')
     
     // Update sound manager with current settings before testing
+    soundManager.setEnabled(soundEnabled)
     soundManager.setVolume(volume / 100)
     soundManager.setSoundType(soundType)
-    // For testing, just play a single sound, not the persistent alarm
-    soundManager.playSound()
+    
+    // Test the sound - this includes better error handling and logging
+    const success = await soundManager.testSound()
+    if (!success) {
+      console.error('Sound test failed - check console for details')
+      // Could show user feedback here
+    }
   }
 
   const handleExportData = async () => {

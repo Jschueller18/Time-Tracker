@@ -26,239 +26,719 @@ export const quotes = [
   },
   {
     id: 7,
-    text: "It's important to sympathize with those who are overlooked. Help mankind pass this moral test by making up for the members who can't or won't"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 8,
-    text: "Sometimes, most times, it's better to not think and just do. Animals function in a cyclical paradise of happiness because they don't compare or overthink things"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 9,
-    text: "Nothing matters; everything is hilarious. Long-term impactful things matter. Staying aligned with them grants you the freedom to live in the moment"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 10,
-    text: "Hear those 'annoying' people out. They often genuinely want to help you understand how good something is and try it"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 11,
-    text: "Please keep exercising every day. Your thoughts are beautiful when you do"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 12,
-    text: "Looking outside cultural standards is often the only way we can avoid underlying depression and achieve full alignment"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 13,
-    text: "When I feel myself starting to slide down, I don't do something for myself—I try to do something for someone else"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 14,
-    text: "Be curious, not judgmental"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 15,
-    text: "Don't apologize for encouraging others to see the viewpoints of their enemies. It's helpful to avoid hate entering their soul"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 16,
-    text: "Humility is not thinking less of yourself, it's thinking about yourself less"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 17,
-    text: "Style is knowing who you are, what you want to say, and not giving a damn"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 18,
-    text: "I love to see people happy, not make people happy"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 19,
-    text: "Move from impressed to involved in all the areas that matter"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 20,
-    text: "If you group humans at random we will still think our group members are better than others. Now that our actions impact people globally, we need to widen our empathizing angle"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 21,
-    text: "Speak up about lingering thoughts or else they can cause problems or at the very least, distractions"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 22,
-    text: "If you fail to do things you don't want to do, you aren't free"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 23,
-    text: "We've evolved to remember negative memories and forget happy ones. Take time to reflect on the happy moments to make up for the bias"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 24,
-    text: "You can only love others as much as you love yourself"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 25,
-    text: "Do the hard thing first"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 26,
-    text: "Choose not to be harmed—and you won't feel harmed. Don't feel harmed—and you haven't been"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 27,
-    text: "Budget for 10% of people simply not liking you regardless of your actions"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 28,
-    text: "The persona cannot receive love. It can only receive praise"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 29,
-    text: "Not to feel exasperated when you fail, but to get back up, celebrate behaving like a human—however imperfectly—and fully embrace the pursuit"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 30,
-    text: "Language is a substitute for action"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 31,
-    text: "The beauty you see in anything is the reflection of the beauty in you"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 32,
-    text: "Self soothing with devices leads to being stagnant in life. Not feeling your negative emotions strips you from the motivation to fix problems"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 33,
-    text: "All this shit is fuckin easy; do more. Put your gear on and get the fuck out there"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 34,
-    text: "If you are waking up today and not thinking it's going to be the best day of your life, why?"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 35,
-    text: "Work as hard as you can as if everything depends on you. But pray as hard as you can, as if everything depends on God"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 36,
-    text: "Speaking of experiences takes from their emotional impact the more people you tell"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 37,
-    text: "Tell your heart that the fear of suffering is worse than the suffering itself"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 38,
-    text: "There is only one thing that makes a dream impossible to achieve: the fear of failure"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 39,
-    text: "Get addicted to the dopamine of your past self helping you, keep serving your future self"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 40,
-    text: "Leadership is being the same in private as you are in public"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 41,
-    text: "Let go of outcomes"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 42,
-    text: "Develop your product, not your marketing"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 43,
-    text: "Quit trying to make the perfect plan. Start, and learn"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 44,
-    text: "Living well does not mean avoiding suffering; it means suffering for the right reasons"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 45,
-    text: "When we avoid pain and stress, we become fragile. Our tolerance for setbacks diminishes"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 46,
-    text: "The unexamined life is a life not worth living"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 47,
-    text: "What you are speaks louder than what you say"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 48,
-    text: "Focus on the enjoyment - it helps you act more efficiently and feel more energized after hard tasks"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 49,
-    text: "Start with the story then follow with the explanation. Emotional investment is required to stick with logic"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 50,
-    text: "The opposite of addiction is purpose"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 51,
-    text: "Movement is the feedback signal to the brain that helps keep it alive and able to self-modify"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 52,
-    text: "You're not bored, you're overstimulated. Go take a walk"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 53,
-    text: "Beautiful things don't ask for attention"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 54,
-    text: "Greatness is not created in the before; it's created in the during"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 55,
-    text: "We only become secure in our convictions by allowing them to be challenged"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 56,
-    text: "Lord don't move that mountain, but give me strength to climb it"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 57,
-    text: "If you're not enjoying it, you're doing it wrong"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 58,
-    text: "Life is a creation, not a discovery. Your job is to do what your ideal self would do"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 59,
-    text: "Without discipline, freedom is a curse. With it, freedom is a superpower"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 60,
-    text: "The greatest positive impacts are made by paradigm shifts - exploring just beyond the fences of normalcy"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 61,
-    text: "The best open-ended choice is one that leads to the most subsequent open-ended choices"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 62,
-    text: "Finite players play within boundaries; infinite players play with boundaries"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 63,
-    text: "The extent to which we take everyday objects for granted is the precise extent to which they govern our lives"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 64,
-    text: "Successful people have reinforcement structures aligned with their values"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   },
   {
     id: 65,
-    text: "You can never know how successful someone is without knowing their true values"
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 66,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 67,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 68,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 69,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 70,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 71,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 72,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 73,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 74,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 75,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 76,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 77,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 78,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 79,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 80,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 81,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 82,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 83,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 84,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 85,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 86,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 87,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 88,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 89,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 90,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 91,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 92,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 93,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 94,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 95,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 96,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 97,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 98,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 99,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 100,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 101,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 102,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 103,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 104,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 105,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 106,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 107,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 108,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 109,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 110,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 111,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 112,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 113,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 114,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 115,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 116,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 117,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 118,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 119,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 120,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 121,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 122,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 123,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 124,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 125,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 126,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 127,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 128,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 129,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 130,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 131,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 132,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 133,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 134,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 135,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 136,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 137,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 138,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 139,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 140,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 141,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 142,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 143,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 144,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 145,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 146,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 147,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 148,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 149,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 150,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 151,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 152,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 153,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 154,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 155,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 156,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 157,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 158,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 159,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 160,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 161,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 162,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 163,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 164,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 165,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 166,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 167,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 168,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 169,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 170,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 171,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 172,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 173,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 174,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 175,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 176,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 177,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 178,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 179,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 180,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 181,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 182,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 183,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 184,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
+  },
+  {
+    id: 185,
+    text: "Your actions are who you really are, not your thoughts. Those who fail to realize this often lose self awareness and justify outcomes with excuses"
   }
 ]
 

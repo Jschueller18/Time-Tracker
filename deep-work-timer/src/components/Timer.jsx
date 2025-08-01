@@ -76,7 +76,7 @@ function Timer({
     }
   }, [showSessionComplete])
 
-  const startTimer = () => {
+  const startTimer = async () => {
     const totalMinutes = hours * 60 + minutes
     if (totalMinutes > 0) {
       const totalSeconds = totalMinutes * 60
@@ -98,9 +98,17 @@ function Timer({
       )
       saveTimerState(timerState)
       
-      // Initialize audio context on user interaction
+      // Initialize audio context on user interaction (required by browsers)
       if (soundManager.isAudioEnabled()) {
-        soundManager.initAudio()
+        const audioInitialized = await soundManager.initAudio()
+        console.log('Audio initialized on timer start:', audioInitialized)
+        
+        // Test that audio is working
+        if (audioInitialized && soundManager.audioContext?.state === 'running') {
+          console.log('Audio context ready for timer completion sounds')
+        } else {
+          console.warn('Audio may not work properly - context state:', soundManager.audioContext?.state)
+        }
       }
     }
   }
